@@ -1,9 +1,7 @@
+import { RoleEnum } from 'src/common/enums/RoleEnum';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-enum RoleEnum {
-    ADMIN = 'admin',
-    USER = 'user'
-}
+
 
 @Entity()
 export class User {
@@ -21,7 +19,7 @@ export class User {
 
     @Column({ type: 'enum', enum: RoleEnum, default: RoleEnum.USER })
     role: RoleEnum
-    
+
     @Column({ type: 'varchar' })
     login_provider?: string
 
