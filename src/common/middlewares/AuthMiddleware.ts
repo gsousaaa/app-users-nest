@@ -3,7 +3,7 @@ import { JwtService } from "@nestjs/jwt";
 import { NextFunction, Request, Response } from "express";
 import { RoleEnum } from "../enums/RoleEnum";
 
-interface UserRequest extends Request {
+export interface UserRequest extends Request {
     user: { id: number, name: string, email: string, role: RoleEnum }
 }
 

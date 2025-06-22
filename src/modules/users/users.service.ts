@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/db/entities/User';
 import { Repository } from 'typeorm';
@@ -20,4 +20,14 @@ export class UsersService {
         return query.getMany()
     }
 
+    async delete(id: number, loggedUserId: number) {
+        if (id === loggedUserId) throw new BadRequestException(`Não é possível deletar este usuário`)
+
+        const existsUser = await this.usersRepository.findOneBy({ id })
+        if (!existsUser) throw new BadRequestException(`Usuário não existe`)
+
+        await this.usersRepository.delete({ id })
+
+        return { message: 'Usuário deletado com sucesso!' }
+    }
 }
