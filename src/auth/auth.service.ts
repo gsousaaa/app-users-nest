@@ -15,6 +15,10 @@ export class AuthService {
         private readonly jwtService: JwtService
     ) { }
 
+    private generateToken(payload: any) {
+        return this.jwtService.sign(payload, { expiresIn: '1h', secret: process.env.JWT_SECRET_KEY })
+    }
+
     async login(data: LoginDto) {
         const user = await this.userRepository.findOneBy({ email: data.email })
 
@@ -29,7 +33,7 @@ export class AuthService {
             name: user.name
         }
 
-        const accessToken = this.jwtService.signAsync(payload, { expiresIn: '1h', secret: process.env.JWT_SECRET_KEY })
+        const accessToken = this.generateToken(payload)
         return { accessToken }
     }
 
@@ -47,7 +51,7 @@ export class AuthService {
             name: createdUser.name
         }
 
-        const accessToken = this.jwtService.signAsync(payload, { expiresIn: '1h', secret: process.env.JWT_SECRET_KEY })
+        const accessToken = this.generateToken(payload)
 
         return { createdUser, accessToken }
     }
