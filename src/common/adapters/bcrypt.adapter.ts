@@ -9,7 +9,7 @@ export interface HashService {
 
 @Injectable()
 export class BcryptAdapter implements HashService {
-    constructor(private readonly salt = 10) { }
+    private readonly salt = 10;
 
     async hash(plain: string): Promise<string> {
         return bcrypt.hash(plain, this.salt)
