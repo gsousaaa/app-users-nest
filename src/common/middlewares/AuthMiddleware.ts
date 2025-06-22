@@ -3,8 +3,10 @@ import { JwtService } from "@nestjs/jwt";
 import { NextFunction, Request, Response } from "express";
 import { RoleEnum } from "../enums/RoleEnum";
 
+export type UserTokenPayload = { id: number, name: string, email: string, role: RoleEnum }
+
 export interface UserRequest extends Request {
-    user: { id: number, name: string, email: string, role: RoleEnum }
+    user: UserTokenPayload
 }
 
 export class AuthMiddleware implements NestMiddleware {

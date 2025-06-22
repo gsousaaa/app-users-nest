@@ -1,8 +1,10 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/db/entities/User';
 import { Repository } from 'typeorm';
 import { FindUsersDto } from './dto/find-users-dto';
+import { UserTokenPayload } from 'src/common/middlewares/AuthMiddleware';
+import { UpdateUserDto } from './dto/update-user-dto';
 
 @Injectable()
 export class UsersService {
@@ -24,10 +26,32 @@ export class UsersService {
         if (id === loggedUserId) throw new BadRequestException(`Não é possível deletar este usuário`)
 
         const existsUser = await this.usersRepository.findOneBy({ id })
-        if (!existsUser) throw new BadRequestException(`Usuário não existe`)
+        if (!existsUser) throw new NotFoundException(`Usuário não encontrado`)
 
         await this.usersRepository.delete({ id })
 
         return { message: 'Usuário deletado com sucesso!' }
+    }
+
+    async update(id: number, loggedUser: UserTokenPayload, data: UpdateUserDto) {
+        const user = await this.usersRepository.findOneBy({ id })
+        if (!user) throw new NotFoundException(`Usuário não encontrado`)
+
+        if (data.email) {
+            const existsUser = await this.usersRepository.findOneBy({ email: data.email })
+            if (existsUser && existsUser.id !== user.id) throw new BadRequestException(`Já existe um usuário cadastrado com esse e-mail`)
+        }
+
+        if (loggedUser.role === 'user' && id !== loggedUser.id) {
+            throw new BadRequestException('Não é possível alterar os dados de outro usuário');
+        }
+
+        if (loggedUser.role === 'user' && data.role) {
+            throw new BadRequestException('Usuários comuns não podem alterar o cargo');
+        }
+
+        Object.assign(user, data)
+
+        return this.usersRepository.save(user)
     }
 }
