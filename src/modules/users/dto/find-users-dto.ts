@@ -1,7 +1,7 @@
 import { IsEnum, IsOptional } from "class-validator";
-import { Order } from "src/common/enums/Order";
-import { RoleEnum } from "src/common/enums/RoleEnum";
-import { SortBy } from "src/common/enums/SortBy";
+import { Order } from "src/utils/enums/Order";
+import { RoleEnum } from "src/utils/enums/RoleEnum";
+import { SortBy } from "src/utils/enums/SortBy";
 
 export class FindUsersDto {
     @IsOptional()

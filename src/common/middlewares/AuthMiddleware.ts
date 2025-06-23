@@ -1,7 +1,7 @@
 import { NestMiddleware, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { NextFunction, Request, Response } from "express";
-import { RoleEnum } from "../enums/RoleEnum";
+import { RoleEnum } from "../../utils/enums/RoleEnum";
 
 export type UserTokenPayload = { id: number, name: string, email: string, role: RoleEnum }
 
