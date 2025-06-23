@@ -96,6 +96,9 @@ docker-compose up --build
 
 ---
 
+### Autorização
+- Deve ser enviado no header 'Authorization' dessa forma: Bearer ${token}
+
 ## 🔐 Controle de Acesso
 
 - Usuários **comuns** só podem alterar seus próprios dados (e não podem mudar o cargo).
