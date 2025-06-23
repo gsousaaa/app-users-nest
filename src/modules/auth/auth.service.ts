@@ -35,6 +35,7 @@ export class AuthService {
             name: user.name
         }
 
+        await this.userRepository.update(user, { last_login: new Date() })
         const accessToken = this.generateToken(payload)
         return { accessToken }
     }
