@@ -32,4 +32,10 @@ export class UsersController {
     async findInactiveUsers() {
         return this.usersService.findInactiveUsers()
     }
+
+    @Patch('password-change')
+    @UseGuards(IsAdminGuard)
+    async resetPassword(@Req() req: UserRequest) {
+        return this.usersService.findInactiveUsers()
+    }
 }
