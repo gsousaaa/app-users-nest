@@ -74,6 +74,6 @@ export class UsersService {
 
         const users = await this.usersRepository.findBy({ last_login: LessThanOrEqual(thirtyDaysAgo) })
 
-        return users
+        return users.map(({ password, ...rest }) => rest)
     }
 }
