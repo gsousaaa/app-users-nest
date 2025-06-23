@@ -1,4 +1,4 @@
-import { RoleEnum } from 'src/common/enums/RoleEnum';
+import { RoleEnum } from 'src/utils/enums/RoleEnum';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 
@@ -25,6 +25,9 @@ export class User {
 
     @Column({ type: 'date', default: new Date() })
     created_at?: Date;
+
+    @Column({ type: 'boolean', default: true })
+    is_active?: boolean
 
     @Column({ type: 'date' })
     updated_at?: Date;
