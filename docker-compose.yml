@@ -31,8 +31,6 @@ services:
       - db
     ports:
       - "${PORT}:${PORT}"
-    volumes:
-      - ./nest-api:/app
     environment:
       PG_HOST: db
       PG_PORT: ${PG_PORT}
@@ -44,7 +42,7 @@ services:
     networks:
       - api-network
 
-volumes:
+volumes: 
   db:
 
 networks:
