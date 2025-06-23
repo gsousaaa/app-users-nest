@@ -1,14 +1,18 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/db/entities/User';
 import { Repository } from 'typeorm';
 import { FindUsersDto } from './dto/find-users-dto';
 import { UserTokenPayload } from 'src/common/middlewares/AuthMiddleware';
 import { UpdateUserDto } from './dto/update-user-dto';
+import { HashService } from 'src/common/adapters/bcrypt.adapter';
 
 @Injectable()
 export class UsersService {
-    constructor(@InjectRepository(User) private readonly usersRepository: Repository<User>) { }
+    constructor(
+        @InjectRepository(User) private readonly usersRepository: Repository<User>,
+        @Inject('Hasher') private readonly hasher: HashService
+    ) { }
 
     async findAll(filters: FindUsersDto) {
         const { role, sortBy = 'created_at', order = 'ASC' } = filters
@@ -54,5 +58,12 @@ export class UsersService {
         Object.assign(user, { ...data, updatedAt: new Date() })
 
         return this.usersRepository.save(user)
+    }
+
+    async resetPassword(password: string, user: UserTokenPayload) {
+        const hashedPassword = await this.hasher.hash(password)
+        await this.usersRepository.update({ id: user.id }, { password: hashedPassword })
+
+        return { message: 'Senha alterada com sucesso!' }
     }
 }
