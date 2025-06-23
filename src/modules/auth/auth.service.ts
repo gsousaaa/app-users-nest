@@ -22,9 +22,11 @@ export class AuthService {
     async login(data: LoginDto) {
         const user = await this.userRepository.findOneBy({ email: data.email })
 
-        const matchPassword = this.hasher.compare(data.password, user!.password)
+        if (!user) throw new BadRequestException(`Usuário e/ou senha incorretos!`)
 
-        if (!user || !matchPassword) throw new BadRequestException(`Usuário e/ou senha incorretos!`)
+        const matchPassword = this.hasher.compare(data.password, user.password)
+
+        if (!matchPassword) throw new BadRequestException(`Usuário e/ou senha incorretos!`)
 
         const payload = {
             id: user.id,
