@@ -1,4 +1,4 @@
 export enum SortBy {
     NAME = 'name',
-    CREATED_AT = 'createdAt',
+    CREATED_AT = 'created_at',
 }
