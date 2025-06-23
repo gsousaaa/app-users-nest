@@ -35,7 +35,7 @@ export class AuthService {
             name: user.name
         }
 
-        await this.userRepository.update(user, { last_login: new Date() })
+        await this.userRepository.update({ id: user.id! }, { last_login: new Date() })
         const accessToken = this.generateToken(payload)
         return { accessToken }
     }
@@ -45,7 +45,7 @@ export class AuthService {
 
         if (existsUser) throw new BadRequestException('Usuário já cadastrado')
 
-        const createdUser = await this.userRepository.save(data)
+        const createdUser = await this.userRepository.save({ ...data, password: await this.hasher.hash(data.password) })
 
         const payload = {
             id: createdUser.id,
