@@ -11,15 +11,16 @@ export class UsersService {
     constructor(@InjectRepository(User) private readonly usersRepository: Repository<User>) { }
 
     async findAll(filters: FindUsersDto) {
-        const { role, sortBy = 'createdAt', order = 'ASC' } = filters
+        const { role, sortBy = 'created_at', order = 'ASC' } = filters
 
-        const query = this.usersRepository.createQueryBuilder('user')
+        const query = this.usersRepository.createQueryBuilder('users')
 
-        if (role) query.andWhere('user.role = :role', { role })
+        if (role) query.andWhere('users.role = :role', { role })
 
-        query.orderBy(`user.${sortBy}`, order.toUpperCase() === 'DESC' ? 'DESC' : 'ASC')
+        query.orderBy(`users.${sortBy}`, order.toUpperCase() === 'DESC' ? 'DESC' : 'ASC')
 
-        return query.getMany()
+        const users = await query.getMany()
+        return users.map(({ password, ...rest }) => rest)
     }
 
     async delete(id: number, loggedUserId: number) {
