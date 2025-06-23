@@ -1,0 +1,260 @@
+type: collection.insomnia.rest/5.0
+name: Conectar
+meta:
+  id: wrk_97ecb65aa43e40b5a233a2c2063c6c9d
+  created: 1750701759356
+  modified: 1750701759356
+  description: ""
+collection:
+  - name: api-users-nest
+    meta:
+      id: fld_eb146513a50647f3b9400d430d40b710
+      created: 1750627397672
+      modified: 1750701771722
+      sortKey: -1750627397672
+      description: ""
+    children:
+      - url: localhost:3333/auth/login
+        name: auth/login
+        meta:
+          id: req_0b214882b0c3483ba903ae9edb8ea8d9
+          created: 1750627401678
+          modified: 1750701513101
+          isPrivate: false
+          description: ""
+          sortKey: -1750627401678
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - id: pair_2bcf8999149347778af7282ed3852d8b
+              name: email
+              value: admin@example.com
+              description: ""
+              disabled: false
+            - id: pair_7faf0579ee42401c890563aa1617dd73
+              name: password
+              value: teste
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.2.0
+        scripts:
+          preRequest: ""
+          afterResponse: ""
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3333/auth/register
+        name: auth/register
+        meta:
+          id: req_794b59a4c5814cbfac2a978ad287b596
+          created: 1750645384852
+          modified: 1750701079499
+          isPrivate: false
+          description: ""
+          sortKey: -1750142053278.5
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - id: pair_2bcf8999149347778af7282ed3852d8b
+              name: email
+              value: test@example.com
+              description: ""
+              disabled: false
+            - id: pair_7faf0579ee42401c890563aa1617dd73
+              name: password
+              value: teste123
+              description: ""
+              disabled: false
+            - id: pair_8c3a709e91964d5fa4d5878dcfdf326f
+              name: name
+              value: User test
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3333/users
+        name: users
+        meta:
+          id: req_5dcaa3962be04f3cb95439716c30de74
+          created: 1750647764831
+          modified: 1750655819592
+          isPrivate: false
+          description: ""
+          sortKey: -1750384727478.25
+        method: GET
+        parameters:
+          - id: pair_0b38d15673b14eb6ada10061bee27175
+            name: order
+            value: asc
+            description: ""
+            disabled: false
+          - id: pair_322cb2c7f65348a891e6edb2fb4d6427
+            name: sortBy
+            value: name
+            description: ""
+            disabled: false
+          - id: pair_693ceceafaf54f0780f82de3768e2d7d
+            name: ""
+            value: ""
+            description: ""
+            disabled: true
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+            id: pair_3b0721193db34755b15106f7bbc8d80b
+          - id: pair_3636b6599ceb41b5bc6c9d57f4b2427a
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm5hbWUiOiJBZG1pbiB0ZXN0ZSIsImlhdCI6MTc1MDY1NTcyNSwiZXhwIjoxNzUwNjU5MzI1fQ.0aqPB5O2olC_qtg7VkAp2_tuZgLqXgWUTyNfci8F71U
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3333/users/inactive
+        name: inactive users
+        meta:
+          id: req_bf0b07c29dd143ec8340b2faab91f168
+          created: 1750652588080
+          modified: 1750656020272
+          isPrivate: false
+          description: ""
+          sortKey: -1750263390378.375
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+            id: pair_3b0721193db34755b15106f7bbc8d80b
+          - id: pair_3636b6599ceb41b5bc6c9d57f4b2427a
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm5hbWUiOiJBZG1pbiB0ZXN0ZSIsImlhdCI6MTc1MDY1NTcyNSwiZXhwIjoxNzUwNjU5MzI1fQ.0aqPB5O2olC_qtg7VkAp2_tuZgLqXgWUTyNfci8F71U
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3333/users/1
+        name: update user
+        meta:
+          id: req_04b5a5a3dea04531a074e3811f6400d0
+          created: 1750701093096
+          modified: 1750701126176
+          isPrivate: false
+          description: ""
+          sortKey: -1749899379078.75
+        method: PATCH
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - id: pair_2bcf8999149347778af7282ed3852d8b
+              name: email
+              value: example2@example.com
+              description: ""
+              disabled: false
+            - id: pair_8c3a709e91964d5fa4d5878dcfdf326f
+              name: name
+              value: User teste
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3333/users/reset-password
+        name: reset-password
+        meta:
+          id: req_909054c4e9154b74b4592eae22c8b7a9
+          created: 1750701295288
+          modified: 1750701318270
+          isPrivate: false
+          description: ""
+          sortKey: -1749778041978.875
+        method: PATCH
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - id: pair_2bcf8999149347778af7282ed3852d8b
+              name: email
+              value: example2@example.com
+              description: ""
+              disabled: false
+            - id: pair_8c3a709e91964d5fa4d5878dcfdf326f
+              name: name
+              value: User teste
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+            id: pair_7fe432b0d8d04f3eaa206dd69a00d7ee
+          - name: User-Agent
+            value: insomnia/11.2.0
+            id: pair_b34debc68eea43459a866a1ff3c4209a
+          - id: pair_2e915e7a501342f9b98dd65997ddecd5
+            name: Authorization
+            value: "Bearer "
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_da236e4b85c58a59b00c83dc372d33c026814dcf
+    created: 1750701759375
+    modified: 1750701759375
+environments:
+  name: Base Environment
+  meta:
+    id: env_da236e4b85c58a59b00c83dc372d33c026814dcf
+    created: 1750701759372
+    modified: 1750701759372
+    isPrivate: false
