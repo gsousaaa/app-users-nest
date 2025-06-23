@@ -22,6 +22,11 @@ export class UsersController {
         return this.usersService.delete(id, req.user.id)
     }
 
+    @Patch('password-change')
+    async resetPassword(@Req() req: UserRequest, @Body() data: ResetPasswordDto) {
+        return this.usersService.resetPassword(data.password, req.user.id)
+    }
+
     @Patch(':id')
     async update(@Req() req: UserRequest, @Param('id', ParseIntPipe) id: number, @Body() data: UpdateUserDto) {
         return this.usersService.update(id, req.user, data)
@@ -33,8 +38,4 @@ export class UsersController {
         return this.usersService.findInactiveUsers()
     }
 
-    @Patch('password-change')
-    async resetPassword(@Req() req: UserRequest, @Body() data: ResetPasswordDto) {
-        return this.usersService.resetPassword(data.password, req.user.id)
-    }
 }
