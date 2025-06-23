@@ -8,7 +8,7 @@ export class UpdateUserDto {
 
     @IsOptional()
     @IsEmail()
-    email?: SortBy
+    email?: string
 
     @IsOptional()
     @IsEnum(RoleEnum)
