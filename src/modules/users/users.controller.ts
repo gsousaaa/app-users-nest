@@ -34,7 +34,6 @@ export class UsersController {
     }
 
     @Patch('password-change')
-    @UseGuards(IsAdminGuard)
     async resetPassword(@Req() req: UserRequest, @Body() data: ResetPasswordDto) {
         return this.usersService.resetPassword(data.password, req.user.id)
     }
