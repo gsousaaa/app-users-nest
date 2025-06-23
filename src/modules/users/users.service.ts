@@ -60,9 +60,9 @@ export class UsersService {
         return this.usersRepository.save(user)
     }
 
-    async resetPassword(password: string, user: UserTokenPayload) {
+    async resetPassword(password: string, userId: number) {
         const hashedPassword = await this.hasher.hash(password)
-        await this.usersRepository.update({ id: user.id }, { password: hashedPassword })
+        await this.usersRepository.update({ id: userId }, { password: hashedPassword })
 
         return { message: 'Senha alterada com sucesso!' }
     }
