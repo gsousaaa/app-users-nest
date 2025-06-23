@@ -14,4 +14,5 @@ export const typeOrmConfig = async (
     retryDelay: 3000,
     autoLoadEntities: true,
     synchronize: false,
+    ssl: false
 });
