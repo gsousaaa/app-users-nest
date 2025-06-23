@@ -8,6 +8,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,  // remove propriedades que não estão no DTO
   }));
+
+  app.enableCors();
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
