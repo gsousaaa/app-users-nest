@@ -22,6 +22,7 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
       - ./src/db/queries/create-users-table.sql:/docker-entrypoint-initdb.d/create-users-table.sql
+      - ./src/db/queries/insert-users.sql:/docker-entrypoint-initdb.d/insert-users-table.sql
 
   api:
     build: .
