@@ -26,4 +26,10 @@ export class UsersController {
     async update(@Req() req: UserRequest, @Param('id', ParseIntPipe) id: number, @Body() data: UpdateUserDto) {
         return this.usersService.update(id, req.user, data)
     }
+
+    @Get('inactive')
+    @UseGuards(IsAdminGuard)
+    async findInactiveUsers() {
+        return this.usersService.findInactiveUsers()
+    }
 }

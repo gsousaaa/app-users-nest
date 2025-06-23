@@ -1,7 +1,7 @@
 import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/db/entities/User';
-import { Repository } from 'typeorm';
+import { LessThanOrEqual, Repository } from 'typeorm';
 import { FindUsersDto } from './dto/find-users-dto';
 import { UserTokenPayload } from 'src/common/middlewares/AuthMiddleware';
 import { UpdateUserDto } from './dto/update-user-dto';
@@ -65,5 +65,15 @@ export class UsersService {
         await this.usersRepository.update({ id: user.id }, { password: hashedPassword })
 
         return { message: 'Senha alterada com sucesso!' }
+    }
+
+    async findInactiveUsers() {
+        const thirtyDaysAgo = new Date()
+
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
+
+        const users = await this.usersRepository.findBy({ last_login: LessThanOrEqual(thirtyDaysAgo) })
+
+        return users
     }
 }
