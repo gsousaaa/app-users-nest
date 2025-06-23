@@ -26,9 +26,6 @@ export class User {
     @Column({ type: 'date', default: new Date() })
     created_at?: Date;
 
-    @Column({ type: 'boolean', default: true })
-    is_active?: boolean
-
     @Column({ type: 'date' })
     updated_at?: Date;
 
