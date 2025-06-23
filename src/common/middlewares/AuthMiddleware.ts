@@ -30,7 +30,7 @@ export class AuthMiddleware implements NestMiddleware {
 
             next()
         } catch (err) {
-            throw new UnauthorizedException(`Token inválido`)
+            next(err)
         }
     }
 }
