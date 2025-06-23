@@ -50,7 +50,7 @@ export class UsersService {
             throw new BadRequestException('Usuários comuns não podem alterar o cargo');
         }
 
-        Object.assign(user, data)
+        Object.assign(user, { ...data, updatedAt: new Date() })
 
         return this.usersRepository.save(user)
     }
