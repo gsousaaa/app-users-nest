@@ -2,9 +2,9 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Query, Req, 
 import { UsersService } from './users.service';
 import { IsAdminGuard } from 'src/common/guards/is-admin-guard';
 import { FindUsersDto } from './dto/find-users-dto';
-import { Request } from 'express';
 import { UserRequest } from 'src/common/middlewares/AuthMiddleware';
 import { UpdateUserDto } from './dto/update-user-dto';
+import { ResetPasswordDto } from './dto/reset-password-dto';
 
 @Controller('users')
 export class UsersController {
@@ -35,7 +35,7 @@ export class UsersController {
 
     @Patch('password-change')
     @UseGuards(IsAdminGuard)
-    async resetPassword(@Req() req: UserRequest) {
-        return this.usersService.findInactiveUsers()
+    async resetPassword(@Req() req: UserRequest, @Body() data: ResetPasswordDto) {
+        return this.usersService.resetPassword(data.password, req.user)
     }
 }
