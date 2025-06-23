@@ -4,12 +4,14 @@ import { ConfigService } from '@nestjs/config';
 export const typeOrmConfig = async (
     configService: ConfigService,
 ): Promise<TypeOrmModuleOptions> => ({
-    type: 'mysql',
-    host: configService.get<string>('MYSQL_HOST'),
-    database: configService.get<string>('MYSQL_DATABASE'),
-    username: configService.get<string>('MYSQL_USERNAME'),
-    password: configService.get<string>('MYSQL_PASSWORD'),
-    port: configService.get<number>('MYSQL_PORT'),
+    type: 'postgres',
+    host: configService.get<string>('PG_HOST'),
+    database: configService.get<string>('PG_DATABASE'),
+    username: configService.get<string>('PG_USERNAME'),
+    password: configService.get<string>('PG_PASSWORD'),
+    port: configService.get<number>('PG_PORT'),
+    retryAttempts: 10,
+    retryDelay: 3000,
     autoLoadEntities: true,
     synchronize: false,
 });

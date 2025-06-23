@@ -17,17 +17,17 @@ export class EnvValidation {
     JWT_SECRET_KEY: string;
 
     @IsNotEmpty()
-    MYSQL_HOST: string
+    PG_HOST: string
 
     @IsNotEmpty()
-    MYSQL_USERNAME: string
+    PG_USERNAME: string
 
     @IsNotEmpty()
-    MYSQL_PORT: string
+    PG_PORT: string
 
     @IsNotEmpty()
-    MYSQL_PASSWORD: string
+    PG_PASSWORD: string
 
     @IsNotEmpty()
-    MYSQL_DATABASE: string
+    PG_DATABASE: string
 }
